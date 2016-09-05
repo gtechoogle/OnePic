@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.gtechoogle.onepic.MainActivity">
+    tools:context=".view.MainActivity">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:id="@+id/wallpaper"
-        android:background="@drawable/abc"/>
+        android:id="@+id/wallpaper"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +26,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/share"
+            android:id="@+id/set_share"
             android:layout_marginRight="@dimen/function_icon_margin"
             android:background="@drawable/ic_share"/>
     </LinearLayout>
