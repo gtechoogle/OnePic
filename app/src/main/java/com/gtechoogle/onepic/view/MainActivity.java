@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.gtechoogle.onepic.manager.PicDownloadManager;
 import com.gtechoogle.onepic.R;
-import com.gtechoogle.onepic.manager.PicUriManager;
+import com.gtechoogle.onepic.manager.PicUrlManager;
 
 import java.io.IOException;
 
@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView mSetWallPaper;
     private ImageView mPic;
     private PicDownloadManager mPicDownloadManager;
-    private PicUriManager mPicUriManager;
-    String url = "http://attimg.dospy.com/img/day_130228/20130228_36ef3bd732b7c43478c9zVvQV485Q0EQ.jpg";
+    private PicUrlManager mPicUrlManager;
+    String url = "http://s.cn.bing.net/az/hprichbg/rb/Dongjiang_ZH-CN10434068279_1920x1080.jpg";
     private Bitmap mBitmap = null;
 
     private Handler mHandler = new Handler() {
@@ -31,6 +31,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             int type = msg.what;
+            Log.d(TAG,"type = " + type);
+            switch (type) {
+                case PicDownloadManager.MSG_LOAD_BIT_MAP_DONE:
+                    if (msg.obj instanceof Bitmap) {
+                        mBitmap = (Bitmap)msg.obj;
+                        mPic.setImageBitmap(mBitmap);
+                    }
+                    break;
+                case PicUrlManager.MSG_REQUEST_SUCCESS:
+                    if (msg.obj instanceof String) {
+                        String imgUrl = (String) msg.obj;
+                        mPicDownloadManager.downloadPic(imgUrl, mHandler);
+                    }
+
+            }
+
             if (type == PicDownloadManager.MSG_LOAD_BIT_MAP_DONE) {
                 if (msg.obj instanceof Bitmap) {
                     mBitmap = (Bitmap)msg.obj;
@@ -52,26 +68,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSetWallPaper = (ImageView) findViewById(R.id.set_wallpaper);
         mSetWallPaper.setOnClickListener(this);
         mPicDownloadManager = new PicDownloadManager(this);
-        mPicUriManager = PicUriManager.getInstance(getApplicationContext());
-        Thread thread=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String uri = mPicUriManager.getPicUri();
-                Log.d(TAG,"run uri = " + uri);
-                Message msg = Message.obtain();
-                msg.obj = uri;
-                msg.what = -1;
-                mHandler.sendMessage(msg);
-            }
-        });
-        thread.start();
+        mPicUrlManager = new PicUrlManager(this, mHandler);
+        mPicUrlManager.sendRequest();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         mPicDownloadManager.downloadPic(url, mHandler);
-
     }
 
     @Override
@@ -88,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             try {
                 myWallpaperManager.setBitmap(mBitmap);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }

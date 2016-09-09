@@ -15,9 +15,9 @@ import com.squareup.picasso.Target;
 public class PicDownloadManager {
     private Context mContext;
     private Handler mHandler;
-    public static int MSG_LOAD_BIT_MAP_DONE = 100;
-    public static int MSG_LOAD_BIT_MAP_FAIL = MSG_LOAD_BIT_MAP_DONE + 1;
-    public static int MSG_LOAD_BIT_MAP_PREPARE = MSG_LOAD_BIT_MAP_DONE + 2;
+    public static final int MSG_LOAD_BIT_MAP_DONE = 100;
+    public static final int MSG_LOAD_BIT_MAP_FAIL = MSG_LOAD_BIT_MAP_DONE + 1;
+    public static final int MSG_LOAD_BIT_MAP_PREPARE = MSG_LOAD_BIT_MAP_DONE + 2;
     private Target mTarget = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
