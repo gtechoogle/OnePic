@@ -2,5 +2,6 @@
     <style name="FullscreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="colorControlHighlight">@android:color/holo_orange_light</item>
     </style>
 </resources>

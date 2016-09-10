@@ -18,6 +18,9 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
+//ext {
+//    supportLibVersion = '24.2.0'  // variable that can be referenced to keep support libs consistent
+//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir

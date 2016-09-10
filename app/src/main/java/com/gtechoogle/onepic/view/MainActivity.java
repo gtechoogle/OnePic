@@ -1,6 +1,5 @@
 package com.gtechoogle.onepic.view;
 
-import android.app.WallpaperManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,23 +9,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.github.clans.fab.FloatingActionButton;
+import com.gtechoogle.app.utility.ShareFunction;
+import com.gtechoogle.app.utility.WallPaperManager;
 import com.gtechoogle.onepic.R;
 import com.gtechoogle.onepic.manager.PicDownloadManager;
 import com.gtechoogle.onepic.manager.PicUrlManager;
-
-import java.io.IOException;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "OnePic";
-    private ImageView mSetWallPaper;
+    private FloatingActionButton mSetWallPaper;
+    private FloatingActionButton mShareBt;
     private ImageView mPic;
     private PhotoViewAttacher mPhotoAttacher;
     private PicDownloadManager mPicDownloadManager;
     private PicUrlManager mPicUrlManager;
-    String url = "http://s.cn.bing.net/az/hprichbg/rb/Dongjiang_ZH-CN10434068279_1920x1080.jpg";
+    String url = "http://girlatlas.b0.upaiyun.com/57c27be392d30228b02ca0d8/20160829/0742zfca9671qk2uyngb.jpg!lrg";
     private Bitmap mBitmap = null;
 
     private Handler mHandler = new Handler() {
@@ -70,7 +71,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPic = (ImageView) findViewById(R.id.wallpaper);
-        mSetWallPaper = (ImageView) findViewById(R.id.set_wallpaper);
+        mSetWallPaper = (FloatingActionButton) findViewById(R.id.set_wallpaper_bt);
+        mShareBt = (FloatingActionButton) findViewById(R.id.share_bt);
+        mShareBt.setOnClickListener(this);
         mPhotoAttacher = new PhotoViewAttacher(mPic);
         mSetWallPaper.setOnClickListener(this);
         mPicDownloadManager = new PicDownloadManager(this);
@@ -92,14 +95,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.set_wallpaper) {
-            WallpaperManager myWallpaperManager
-                    = WallpaperManager.getInstance(getApplicationContext());
-            try {
-                myWallpaperManager.setBitmap(mBitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (view.getId() == R.id.set_wallpaper_bt) {
+            WallPaperManager manager = new WallPaperManager(this);
+            manager.setWallpaper(mBitmap);
+        } else if (view.getId() == R.id.share_bt) {
+            ShareFunction share = new ShareFunction(this);
+            share.shareText();
         }
     }
 }

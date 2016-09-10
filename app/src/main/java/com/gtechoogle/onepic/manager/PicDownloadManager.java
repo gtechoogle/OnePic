@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -15,6 +16,7 @@ import com.squareup.picasso.Target;
 public class PicDownloadManager {
     private Context mContext;
     private Handler mHandler;
+    private static final String TAG = "PicDownloadManager";
     public static final int MSG_LOAD_BIT_MAP_DONE = 100;
     public static final int MSG_LOAD_BIT_MAP_FAIL = MSG_LOAD_BIT_MAP_DONE + 1;
     public static final int MSG_LOAD_BIT_MAP_PREPARE = MSG_LOAD_BIT_MAP_DONE + 2;
@@ -22,6 +24,7 @@ public class PicDownloadManager {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
             if (mHandler != null) {
+                Log.d(TAG, "onBitmapLoaded");
                 Message msg = Message.obtain();
                 msg.what = MSG_LOAD_BIT_MAP_DONE;
                 msg.obj = bitmap;
@@ -31,12 +34,11 @@ public class PicDownloadManager {
 
         @Override
         public void onBitmapFailed(Drawable errorDrawable) {
-
+            Log.d(TAG, "onBitmapFailed");
         }
 
         @Override
         public void onPrepareLoad(Drawable placeHolderDrawable) {
-
         }
     };
 
