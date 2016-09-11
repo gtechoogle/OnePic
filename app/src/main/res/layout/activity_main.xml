@@ -28,7 +28,7 @@
             fab:fab_size="mini"
             fab:fab_colorRipple="#eeeeee"/>
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/share_bt"
+            android:id="@+id/save_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"

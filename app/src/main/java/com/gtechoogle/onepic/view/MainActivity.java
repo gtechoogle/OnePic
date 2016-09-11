@@ -8,9 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
-import com.gtechoogle.app.utility.ShareFunction;
+import com.gtechoogle.app.utility.FileAccessManager;
 import com.gtechoogle.app.utility.WallPaperManager;
 import com.gtechoogle.onepic.R;
 import com.gtechoogle.onepic.manager.PicDownloadManager;
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mPic = (ImageView) findViewById(R.id.wallpaper);
         mSetWallPaper = (FloatingActionButton) findViewById(R.id.set_wallpaper_bt);
-        mShareBt = (FloatingActionButton) findViewById(R.id.share_bt);
+        mShareBt = (FloatingActionButton) findViewById(R.id.save_bt);
         mShareBt.setOnClickListener(this);
         mPhotoAttacher = new PhotoViewAttacher(mPic);
         mSetWallPaper.setOnClickListener(this);
@@ -98,9 +99,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.set_wallpaper_bt) {
             WallPaperManager manager = new WallPaperManager(this);
             manager.setWallpaper(mBitmap);
-        } else if (view.getId() == R.id.share_bt) {
-            ShareFunction share = new ShareFunction(this);
-            share.shareText();
+            Toast.makeText(this, R.string.wallpaper_hint,Toast.LENGTH_LONG).show();
+        } else if (view.getId() == R.id.save_bt) {
+            //FileAccessManager.verifyStoragePermissions(this);
+            FileAccessManager fileAccessManager = new FileAccessManager(this, getString(R.string.foldr_name));
+            fileAccessManager.saveWallpaper(mBitmap);
         }
     }
 }

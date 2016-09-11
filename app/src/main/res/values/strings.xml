@@ -4,4 +4,6 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="dummy_content1">go to %d</string>
+    <string name="wallpaper_hint">Setting wallpaper ......</string>
+    <string name="foldr_name">BingWallPaper</string>
 </resources>
