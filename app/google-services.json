@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "116027687327",
+    "firebase_url": "https://everyday-bing-f30b9.firebaseio.com",
+    "project_id": "everyday-bing-f30b9",
+    "storage_bucket": "everyday-bing-f30b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116027687327:android:5d25381b5620750a",
+        "android_client_info": {
+          "package_name": "com.gtechoogle.onepic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116027687327-nbvpdco4ffp7adardlpr1vdgbsovno0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwyh2_Jj2b6XiLse6fYIe9dmcIoxjJ-vo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
