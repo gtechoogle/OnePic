@@ -14,6 +14,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.gtechoogle.app.utility.FileAccessManager;
 import com.gtechoogle.app.utility.WallPaperManager;
 import com.gtechoogle.onepic.R;
+import com.gtechoogle.onepic.ad.AdManager;
 import com.gtechoogle.onepic.manager.PicDownloadManager;
 import com.gtechoogle.onepic.manager.PicUrlManager;
 
@@ -28,9 +29,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private PhotoViewAttacher mPhotoAttacher;
     private PicDownloadManager mPicDownloadManager;
     private PicUrlManager mPicUrlManager;
+    private AdManager mAdManager;
     String url = "http://girlatlas.b0.upaiyun.com/57c27be392d30228b02ca0d8/20160829/0742zfca9671qk2uyngb.jpg!lrg";
     private Bitmap mBitmap = null;
-
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -51,9 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         String imgUrl = (String) msg.obj;
                         mPicDownloadManager.downloadPic(imgUrl, mHandler);
                     }
-
             }
-
             if (type == PicDownloadManager.MSG_LOAD_BIT_MAP_DONE) {
                 if (msg.obj instanceof Bitmap) {
                     mBitmap = (Bitmap)msg.obj;
@@ -80,11 +79,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPicDownloadManager = new PicDownloadManager(this);
         mPicUrlManager = new PicUrlManager(this, mHandler);
         mPicUrlManager.sendRequest();
+        mAdManager = new AdManager(this);
+        mAdManager.initAd("ca-app-pub-6412462946252645/3612931211");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mAdManager.showAd();
         mPicDownloadManager.downloadPic(url, mHandler);
     }
 
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onPause() {
         super.onPause();
         mPicDownloadManager.cancelDownload();
+        mAdManager.cancelAd();
     }
 
     @Override
