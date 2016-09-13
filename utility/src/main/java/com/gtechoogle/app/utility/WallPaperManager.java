@@ -39,9 +39,11 @@ public class WallPaperManager {
         });
     }
     public void setWallpaper(Bitmap bitmap) {
-        Message msg = Message.obtain();
-        msg.obj = bitmap;
-        msg.what = MSG_SET;
-        mWallpaperHandler.sendMessage(msg);
+        if (bitmap != null) {
+            Message msg = Message.obtain();
+            msg.obj = bitmap;
+            msg.what = MSG_SET;
+            mWallpaperHandler.sendMessage(msg);
+        }
     }
 }

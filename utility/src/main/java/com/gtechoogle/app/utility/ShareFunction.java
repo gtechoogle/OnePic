@@ -12,13 +12,11 @@ public class ShareFunction {
     public ShareFunction (Context context) {
         mContext = context;
     }
-    //分享文字
     public void shareText() {
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my Share text.");
         shareIntent.setType("text/plain");
-        //设置分享列表的标题，并且每次都显示分享列表
         mContext.startActivity(Intent.createChooser(shareIntent, "分享到"));
     }
 }

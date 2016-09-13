@@ -5,6 +5,9 @@ import android.os.Message;
 import android.util.Log;
 
 import com.gtechoogle.onepic.manager.PicUrlManager;
+import com.gtechoogle.onepic.model.WallpaperDataInfo;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,9 +44,9 @@ public class BingHttpRequest {
                         sendImageUrl(getFailMessage());
                         return;
                     }
-                    String url = data.getImagesUrl();
-                    Log.d(TAG,"image url = " + url);
-                    sendImageUrl(getSuccessMessage(url));
+                    List<WallpaperDataInfo> info = data.getPicInfo();
+                    Log.d(TAG,"info  = " + info);
+                    sendImageUrl(getSuccessMessage(info));
                 }
             }
 
@@ -62,10 +65,10 @@ public class BingHttpRequest {
         msg.what = PicUrlManager.MSG_REQUEST_FAIL;
         return msg;
     }
-    private Message getSuccessMessage(String imageUri) {
+    private Message getSuccessMessage(List<WallpaperDataInfo> data) {
         Message msg = Message.obtain();
         msg.what = PicUrlManager.MSG_REQUEST_SUCCESS;
-        msg.obj = imageUri;
+        msg.obj = data;
         return msg;
     }
 }

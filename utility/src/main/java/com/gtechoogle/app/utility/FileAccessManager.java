@@ -55,39 +55,28 @@ public class FileAccessManager {
     }
 
     public void saveWallpaper(Bitmap bitmap) {
+        saveWallpaper(getFileNameByDate(), bitmap);
+    }
+    public void saveWallpaper(String fileName, Bitmap bitmap) {
         if (!isExternalStorageAvailable()) {
             return;
         }
-        mSaveFilePath = new File(mFolder.getPath() + "/" + getFileNameByDate());
+        mSaveFilePath = new File(mFolder.getPath() + "/" + fileName + ".png");
         if(mSaveFilePath.exists()){
             mSaveFilePath.delete();
+            Log.d(TAG,"Exist file and delete first");
         }
         Message msg = Message.obtain();
         msg.what = MSG_SAVE_BITMAP;
         msg.obj = bitmap;
         mFileHanlder.sendMessage(msg);
     }
-
     private String getFileNameByDate() {
         Time time=new Time();
         time.setToNow();
         Log.d(TAG,"year="+time.year+" month="+(time.month+1)+" day="+time.monthDay+" hour="+time.hour+" minute="+time.minute);
         return  String.valueOf(time.year) + String.valueOf(time.month) + ".png";
 
-    }
-
-    public void saveWallpaper(String fileName, Bitmap bitmap) {
-        if (!isExternalStorageAvailable()) {
-            return;
-        }
-        mSaveFilePath = new File(mFolder.getPath() + "/" + fileName);
-        if(mSaveFilePath.exists()){
-            mSaveFilePath.delete();
-        }
-        Message msg = Message.obtain();
-        msg.what = MSG_SAVE_BITMAP;
-        msg.obj = bitmap;
-        mFileHanlder.sendMessage(msg);
     }
 
     private void saveBitmapFile(Bitmap bitmap) {
