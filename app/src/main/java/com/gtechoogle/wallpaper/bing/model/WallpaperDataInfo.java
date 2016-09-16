@@ -1,4 +1,4 @@
-package com.gtechoogle.onepic.model;
+package com.gtechoogle.wallpaper.bing.model;
 
 /**
  * Created by MTK54273 on 9/13/2016.

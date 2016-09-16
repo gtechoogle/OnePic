@@ -1,4 +1,4 @@
-package com.gtechoogle.onepic.manager;
+package com.gtechoogle.wallpaper.bing.manager;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +16,7 @@ import com.squareup.picasso.Target;
 public class PicDownloadManager {
     private Context mContext;
     private Handler mHandler;
+    private String mUrl;
     private static final String TAG = "PicDownloadManager";
     public static final int MSG_LOAD_BIT_MAP_DONE = 100;
     public static final int MSG_LOAD_BIT_MAP_FAIL = MSG_LOAD_BIT_MAP_DONE + 1;
@@ -47,6 +48,7 @@ public class PicDownloadManager {
     }
     public void downloadPic(String uri, Handler handler) {
         mHandler = handler;
+        mUrl = uri;
         Picasso.with(mContext).load(uri).into(mTarget);
     }
     public void cancelDownload() {

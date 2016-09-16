@@ -1,4 +1,4 @@
-package com.gtechoogle.onepic.view.fab;
+package com.gtechoogle.wallpaper.bing.view.fab;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -16,7 +16,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.gtechoogle.app.utility.FileAccessManager;
 import com.gtechoogle.app.utility.ShareFunction;
 import com.gtechoogle.app.utility.WallPaperManager;
-import com.gtechoogle.onepic.R;
+import com.gtechoogle.wallpaper.bing.R;
 
 public class FloatButtonManager implements View.OnClickListener {
     private FloatingActionMenu mMenu;

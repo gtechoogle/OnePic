@@ -1,4 +1,4 @@
-package com.gtechoogle.onepic.retrofit.bing;
+package com.gtechoogle.wallpaper.bing.retrofit;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

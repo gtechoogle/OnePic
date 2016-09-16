@@ -1,4 +1,4 @@
-package com.gtechoogle.onepic.ad.google;
+package com.gtechoogle.wallpaper.bing.google;
 
 import android.content.Context;
 import android.util.Log;
@@ -6,10 +6,11 @@ import android.util.Log;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.gtechoogle.onepic.ad.AdInterface;
+import com.gtechoogle.wallpaper.bing.ad.AdInterface;
 
 public class AdMobManager implements AdInterface {
     private static final String TAG = "AdMobManager";
+    private static final String ADID = "ca-app-pub-6412462946252645/3612931211";
     private Context mContext;
     private InterstitialAd mInterstitialAd;
     private boolean mAdOpen;
@@ -21,9 +22,9 @@ public class AdMobManager implements AdInterface {
     }
 
     @Override
-    public void initAd(String key) {
+    public void initAd() {
         mInterstitialAd = new InterstitialAd(mContext);
-        mInterstitialAd.setAdUnitId(key);
+        mInterstitialAd.setAdUnitId(ADID);
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {

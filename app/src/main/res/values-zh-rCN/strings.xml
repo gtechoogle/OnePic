@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">每日必应</string>
-    <string name="wallpaper_hint">Setting wallpaper ......</string>
+    <string name="app_name">每日必应壁纸</string>
+    <string name="wallpaper_hint">设定壁纸中 ......</string>
+    <string name="menu_item_set_wallpaper">设为壁纸</string>
+    <string name="menu_item_download">下载</string>
+    <string name="menu_item_share">共享</string>
 </resources>

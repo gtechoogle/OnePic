@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:116027687327:android:5d25381b5620750a",
+        "mobilesdk_app_id": "1:116027687327:android:9cf1b7ffb8a3cb12",
         "android_client_info": {
-          "package_name": "com.gtechoogle.onepic"
+          "package_name": "com.gtechoogle.wallpaper.bing"
         }
       },
       "oauth_client": [

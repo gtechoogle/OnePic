@@ -1,9 +1,9 @@
-package com.gtechoogle.onepic.manager;
+package com.gtechoogle.wallpaper.bing.manager;
 
 import android.content.Context;
 import android.os.Handler;
 
-import com.gtechoogle.onepic.retrofit.bing.BingHttpRequest;
+import com.gtechoogle.wallpaper.bing.retrofit.BingHttpRequest;
 
 /**
  * Created by MTK54273 on 9/9/2016.

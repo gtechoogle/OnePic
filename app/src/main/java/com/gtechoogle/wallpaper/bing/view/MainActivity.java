@@ -1,29 +1,19 @@
-package com.gtechoogle.onepic.view;
+package com.gtechoogle.wallpaper.bing.view;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.github.clans.fab.FloatingActionButton;
-import com.gtechoogle.app.utility.FileAccessManager;
-import com.gtechoogle.app.utility.WallPaperManager;
-import com.gtechoogle.onepic.R;
-import com.gtechoogle.onepic.ad.AdManager;
-import com.gtechoogle.onepic.manager.PicDownloadManager;
-import com.gtechoogle.onepic.manager.PicUrlManager;
-import com.gtechoogle.onepic.model.WallpaperDataInfo;
-import com.gtechoogle.onepic.view.fab.FloatButtonManager;
+import com.gtechoogle.wallpaper.bing.R;
+import com.gtechoogle.wallpaper.bing.ad.AdManager;
+import com.gtechoogle.wallpaper.bing.manager.PicUrlManager;
+import com.gtechoogle.wallpaper.bing.manager.PicDownloadManager;
+import com.gtechoogle.wallpaper.bing.model.WallpaperDataInfo;
+import com.gtechoogle.wallpaper.bing.view.fab.FloatButtonManager;
 
 import java.util.List;
 
@@ -85,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         mPicUrlManager = new PicUrlManager(this, mHandler);
         mPicUrlManager.sendRequest();
         mAdManager = new AdManager(this);
-        mAdManager.initAd("ca-app-pub-6412462946252645/3612931211");
+        mAdManager.initAd();
         mFloatBtManager = new FloatButtonManager(this);
     }
 
@@ -93,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mAdManager.showAd();
-        mPicDownloadManager.downloadPic(url, mHandler);
     }
 
     @Override

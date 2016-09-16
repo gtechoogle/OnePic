@@ -1,9 +1,9 @@
-package com.gtechoogle.onepic.manager;
+package com.gtechoogle.wallpaper.bing.manager;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.gtechoogle.onepic.R;
+import com.gtechoogle.wallpaper.bing.R;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,8 +13,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PicUriManager {
 

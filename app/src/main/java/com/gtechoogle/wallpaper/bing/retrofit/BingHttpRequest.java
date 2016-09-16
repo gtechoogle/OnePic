@@ -1,11 +1,11 @@
-package com.gtechoogle.onepic.retrofit.bing;
+package com.gtechoogle.wallpaper.bing.retrofit;
 
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.gtechoogle.onepic.manager.PicUrlManager;
-import com.gtechoogle.onepic.model.WallpaperDataInfo;
+import com.gtechoogle.wallpaper.bing.manager.PicUrlManager;
+import com.gtechoogle.wallpaper.bing.model.WallpaperDataInfo;
 
 import java.util.List;
 

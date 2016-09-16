@@ -1,8 +1,8 @@
-package com.gtechoogle.onepic.ad;
+package com.gtechoogle.wallpaper.bing.ad;
 
 import android.content.Context;
 
-import com.gtechoogle.onepic.ad.google.AdMobManager;
+import com.gtechoogle.wallpaper.bing.google.AdMobManager;
 
 
 /**
@@ -17,8 +17,8 @@ public class AdManager implements AdInterface {
         mAdMobManager = new AdMobManager(context);
     }
     @Override
-    public void initAd(String key) {
-        mAdMobManager.initAd(key);
+    public void initAd() {
+        mAdMobManager.initAd();
     }
 
     @Override

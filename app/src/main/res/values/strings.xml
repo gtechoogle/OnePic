@@ -1,11 +1,7 @@
 <resources>
-    <string name="app_name">Every Day Bing</string>
-
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="dummy_content1">go to %d</string>
+    <string name="app_name">Daily Wallpaper</string>
     <string name="wallpaper_hint">Setting wallpaper ......</string>
-    <string name="folder_name">BingWallPaper</string>
+    <string name="folder_name" translatable="false">BingWallPaper</string>
     <string name="menu_item_set_wallpaper">Set as wallpaper</string>
     <string name="menu_item_download">Download to</string>
     <string name="menu_item_share">Share</string>
