@@ -1,15 +1,18 @@
 <resources>
+
     <style name="FullscreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="colorControlHighlight">@android:color/holo_orange_light</item>
     </style>
+
     <style name="MenuButtonsSmall">
         <item name="fab_size">mini</item>
         <item name="fab_colorNormal">#1565C0</item>
         <item name="fab_colorPressed">#2272CD</item>
         <item name="fab_colorRipple">#62B2FF</item>
     </style>
+
     <style name="MenuButtonsStyle">
         <item name="fab_size">mini</item>
         <item name="fab_showAnimation">@anim/jump_from_down</item>
@@ -19,4 +22,8 @@
         <item name="fab_colorPressed">#F2AB00</item>
         <item name="fab_colorRipple">#D99200</item>
     </style>
+
+    <style name="FullscreenTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="FullscreenTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
