@@ -1,5 +1,6 @@
 package com.gtechoogle.wallpaper.bing.view;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +20,7 @@ import java.util.List;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
-public class MainActivity extends AppCompatActivity {
+public class FullWallpaperActivity extends AppCompatActivity {
 
     private static final String TAG = "OnePic";
     private FloatButtonManager mFloatBtManager;
@@ -27,9 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private PhotoViewAttacher mPhotoAttacher;
     private PicDownloadManager mPicDownloadManager;
     private PicUrlManager mPicUrlManager;
-    private AdManager mAdManager;
     private WallpaperDataInfo mCurrentInfo;
-    String url = "http://girlatlas.b0.upaiyun.com/57c27be392d30228b02ca0d8/20160829/0742zfca9671qk2uyngb.jpg!lrg";
     private Bitmap mBitmap = null;
     private Handler mHandler = new Handler() {
         @Override
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 case PicDownloadManager.MSG_LOAD_BIT_MAP_DONE:
                     if (msg.obj instanceof Bitmap) {
                         mBitmap = (Bitmap)msg.obj;
-                        mFloatBtManager.setBitmapInfo(mBitmap, mCurrentInfo.getName());
+                        //mFloatBtManager.setBitmapInfo(mBitmap, mCurrentInfo.getName());
                         mPic.setImageBitmap(mBitmap);
                         mPhotoAttacher.setScaleType(ImageView.ScaleType.CENTER_CROP);
                         mPhotoAttacher.update();
@@ -67,28 +66,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        String url = null;
+        if (intent != null) {
+            url = intent.getStringExtra("url");
+            Log.d("TEST","url = " + url);
+        }
         setContentView(R.layout.activity_main);
         mPic = (ImageView) findViewById(R.id.wallpaper);
         mPhotoAttacher = new PhotoViewAttacher(mPic);
 
         mPicDownloadManager = new PicDownloadManager(this);
-        mPicUrlManager = new PicUrlManager(this, mHandler);
-        mPicUrlManager.sendRequest();
-        mAdManager = new AdManager(this);
-        mAdManager.initAd();
+        mPicDownloadManager.downloadPic(url, mHandler);
+
         mFloatBtManager = new FloatButtonManager(this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mAdManager.showAd();
-    }
 
     @Override
     protected void onPause() {
         super.onPause();
         mPicDownloadManager.cancelDownload();
-        mAdManager.cancelAd();
+
     }
 }

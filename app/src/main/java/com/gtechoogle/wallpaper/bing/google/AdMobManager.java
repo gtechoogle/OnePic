@@ -44,6 +44,7 @@ public class AdMobManager implements AdInterface {
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
                 Log.d(TAG,"onAdFailedToLoad");
+                requestNewInterstitial();
             }
 
             @Override
