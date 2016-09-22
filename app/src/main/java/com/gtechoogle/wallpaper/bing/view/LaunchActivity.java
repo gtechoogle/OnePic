@@ -1,29 +1,23 @@
 package com.gtechoogle.wallpaper.bing.view;
 
-import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.gtechoogle.app.utility.DevicesManager;
 import com.gtechoogle.app.utility.NetworkManager;
 import com.gtechoogle.wallpaper.bing.R;
 import com.gtechoogle.wallpaper.bing.ad.AdManager;
 import com.gtechoogle.wallpaper.bing.manager.PicUrlManager;
-import com.gtechoogle.wallpaper.bing.model.WallpaperDataInfo;
+import com.gtechoogle.wallpaper.bing.model.WallpaperInfo;
 import com.gtechoogle.wallpaper.bing.view.listcardview.WallpaperCardViewAdapter;
-import com.gtechoogle.wallpaper.bing.view.listcardview.WallpaperCardViewInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +27,7 @@ public class LaunchActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private PicUrlManager mPicUrlManager;
     private AdManager mAdManager;
-    private List<WallpaperCardViewInfo> mWallpaperInfoList = new ArrayList<>();
+    private List<WallpaperInfo> mWallpaperInfoList = new ArrayList<>();
     private WallpaperCardViewAdapter mAdapter;
     private ProgressBar mLoading;
 
@@ -57,20 +51,11 @@ public class LaunchActivity extends AppCompatActivity {
     };
 
     private void setupWallpaperData(Message msg) {
-        List<WallpaperDataInfo> data = (List<WallpaperDataInfo>) msg.obj;
+        List<WallpaperInfo> data = (List<WallpaperInfo>) msg.obj;
         mWallpaperInfoList.clear();
-        for(WallpaperDataInfo item : data) {
-            WallpaperCardViewInfo info = convertToCardViewInfo(item);
-            mWallpaperInfoList.add(info);
+        for(WallpaperInfo item : data) {
+            mWallpaperInfoList.add(item);
         }
-    }
-
-    private WallpaperCardViewInfo convertToCardViewInfo(WallpaperDataInfo item) {
-        String date = item.getName();
-        String location = item.getDescription();
-        String imageUrl = item.getUri();
-        WallpaperCardViewInfo info = new WallpaperCardViewInfo(date, location, imageUrl);
-        return info;
     }
 
     @Override

@@ -2,9 +2,7 @@ package com.gtechoogle.wallpaper.bing.view.listcardview;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,7 @@ import android.widget.ImageView;
 
 import com.gtechoogle.app.utility.MiscUtility;
 import com.gtechoogle.wallpaper.bing.R;
+import com.gtechoogle.wallpaper.bing.model.WallpaperInfo;
 import com.gtechoogle.wallpaper.bing.view.FullWallpaperActivity;
 import com.squareup.picasso.Picasso;
 
@@ -20,9 +19,9 @@ import java.util.List;
 public class WallpaperCardViewAdapter extends RecyclerView.Adapter<WallpaperCardViewHolder> {
     private static final String TAG = "WallpaperCardViewAdapter";
     private Context mContext;
-    private List<WallpaperCardViewInfo> mList;
+    private List<WallpaperInfo> mList;
 
-    public WallpaperCardViewAdapter(Context context, List<WallpaperCardViewInfo> data) {
+    public WallpaperCardViewAdapter(Context context, List<WallpaperInfo> data) {
         mContext = context;
         mList = data;
     }
@@ -36,21 +35,21 @@ public class WallpaperCardViewAdapter extends RecyclerView.Adapter<WallpaperCard
 
     @Override
     public void onBindViewHolder(WallpaperCardViewHolder holder, int position) {
-        final WallpaperCardViewInfo info = mList.get(position);
+        final WallpaperInfo info = mList.get(position);
         ImageView imageView = holder.getImageView();
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
+                intent.putExtra(WallpaperInfo.KEY_WALLPAPER_INFO, info);
                 intent.setClass(mContext, FullWallpaperActivity.class);
-                intent.putExtra("url", info.imgUrl);
                 mContext.startActivity(intent);
             }
         });
-        Picasso.with(mContext).load(modifyResolution(info.imgUrl)).into(imageView);
+        Picasso.with(mContext).load(modifyResolution(info.getUri())).into(imageView);
         holder.setTitle(
-                mContext.getString(R.string.title_time, MiscUtility.getDateInFormat(info.date)));
-        holder.setSummary(mContext.getString(R.string.summary_location,info.location));
+                mContext.getString(R.string.title_time, MiscUtility.getDateInFormat(info.getDate())));
+        holder.setSummary(mContext.getString(R.string.summary_location,info.getDescription()));
     }
 
     private String modifyResolution(String imgUrl) {

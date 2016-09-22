@@ -5,7 +5,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.gtechoogle.wallpaper.bing.manager.PicUrlManager;
-import com.gtechoogle.wallpaper.bing.model.WallpaperDataInfo;
+import com.gtechoogle.wallpaper.bing.model.WallpaperInfo;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class BingHttpRequest {
                         sendImageUrl(getFailMessage());
                         return;
                     }
-                    List<WallpaperDataInfo> info = data.getPicInfo();
+                    List<WallpaperInfo> info = data.getPicInfo();
                     Log.d(TAG,"info  = " + info);
                     sendImageUrl(getSuccessMessage(info));
                 }
@@ -65,7 +65,7 @@ public class BingHttpRequest {
         msg.what = PicUrlManager.MSG_REQUEST_FAIL;
         return msg;
     }
-    private Message getSuccessMessage(List<WallpaperDataInfo> data) {
+    private Message getSuccessMessage(List<WallpaperInfo> data) {
         Message msg = Message.obtain();
         msg.what = PicUrlManager.MSG_REQUEST_SUCCESS;
         msg.obj = data;

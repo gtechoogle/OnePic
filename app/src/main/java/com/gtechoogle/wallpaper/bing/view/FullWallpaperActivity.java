@@ -10,13 +10,9 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.gtechoogle.wallpaper.bing.R;
-import com.gtechoogle.wallpaper.bing.ad.AdManager;
-import com.gtechoogle.wallpaper.bing.manager.PicUrlManager;
 import com.gtechoogle.wallpaper.bing.manager.PicDownloadManager;
-import com.gtechoogle.wallpaper.bing.model.WallpaperDataInfo;
+import com.gtechoogle.wallpaper.bing.model.WallpaperInfo;
 import com.gtechoogle.wallpaper.bing.view.fab.FloatButtonManager;
-
-import java.util.List;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
 
@@ -27,9 +23,8 @@ public class FullWallpaperActivity extends AppCompatActivity {
     private ImageView mPic;
     private PhotoViewAttacher mPhotoAttacher;
     private PicDownloadManager mPicDownloadManager;
-    private PicUrlManager mPicUrlManager;
-    private WallpaperDataInfo mCurrentInfo;
     private Bitmap mBitmap = null;
+    private WallpaperInfo mInfo;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -40,48 +35,30 @@ public class FullWallpaperActivity extends AppCompatActivity {
                 case PicDownloadManager.MSG_LOAD_BIT_MAP_DONE:
                     if (msg.obj instanceof Bitmap) {
                         mBitmap = (Bitmap)msg.obj;
-                        //mFloatBtManager.setBitmapInfo(mBitmap, mCurrentInfo.getName());
+                        mFloatBtManager.setBitmapInfo(mBitmap, mInfo.getDate());
                         mPic.setImageBitmap(mBitmap);
                         mPhotoAttacher.setScaleType(ImageView.ScaleType.CENTER_CROP);
                         mPhotoAttacher.update();
                     }
                     break;
-                case PicUrlManager.MSG_REQUEST_SUCCESS:
-                    if (msg.obj instanceof List) {
-                        handleReqSuccess(msg);
-                    }
             }
         }
     };
-
-    private void handleReqSuccess(Message msg) {
-        List<WallpaperDataInfo> itemList = (List<WallpaperDataInfo>) msg.obj;
-        mCurrentInfo = itemList.get(0);
-        String imgUrl = mCurrentInfo.getUri();
-        Log.d(TAG,"imgUrl = " + imgUrl);
-        mPicDownloadManager.downloadPic(imgUrl, mHandler);
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        String url = null;
         if (intent != null) {
-            url = intent.getStringExtra("url");
-            Log.d("TEST","url = " + url);
+            mInfo = intent.getParcelableExtra(WallpaperInfo.KEY_WALLPAPER_INFO);
         }
         setContentView(R.layout.activity_main);
         mPic = (ImageView) findViewById(R.id.wallpaper);
         mPhotoAttacher = new PhotoViewAttacher(mPic);
-
-        mPicDownloadManager = new PicDownloadManager(this);
-        mPicDownloadManager.downloadPic(url, mHandler);
-
         mFloatBtManager = new FloatButtonManager(this);
+        mPicDownloadManager = new PicDownloadManager(this);
+        mPicDownloadManager.downloadPic(mInfo.getUri(), mHandler);
     }
-
 
     @Override
     protected void onPause() {
