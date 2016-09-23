@@ -1,20 +1,32 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'gtechoogle'
+            keyPassword '1qaZ2wsX'
+            storeFile file('E:/app key/gtechoogle.jks')
+            storePassword '1qaZ2wsX'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
         applicationId "com.gtechoogle.wallpaper.bing"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 2
-        versionName "2.0"
+        versionCode 4
+        versionName "3.1.0"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix 'dbg'
         }
     }
 }
@@ -35,6 +47,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.0'
     compile 'com.android.support:cardview-v7:24.2.0'
     compile 'com.android.support:design:24.2.0'
-
 }
 apply plugin: 'com.google.gms.google-services'
