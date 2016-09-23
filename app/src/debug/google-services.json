@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "116027687327",
+    "firebase_url": "https://everyday-bing-f30b9.firebaseio.com",
+    "project_id": "everyday-bing-f30b9",
+    "storage_bucket": "everyday-bing-f30b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116027687327:android:9cf1b7ffb8a3cb12",
+        "android_client_info": {
+          "package_name": "com.gtechoogle.wallpaper.bing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116027687327-nbvpdco4ffp7adardlpr1vdgbsovno0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwyh2_Jj2b6XiLse6fYIe9dmcIoxjJ-vo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116027687327:android:f13c71f457bd3009",
+        "android_client_info": {
+          "package_name": "com.gtechoogle.wallpaper.bing.dbg"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116027687327-nbvpdco4ffp7adardlpr1vdgbsovno0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwyh2_Jj2b6XiLse6fYIe9dmcIoxjJ-vo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

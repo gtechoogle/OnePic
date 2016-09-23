@@ -1,13 +1,16 @@
 package com.gtechoogle.wallpaper.bing.view.listcardview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.gtechoogle.app.utility.DevicesManager;
 import com.gtechoogle.app.utility.MiscUtility;
 import com.gtechoogle.wallpaper.bing.R;
 import com.gtechoogle.wallpaper.bing.model.WallpaperInfo;
@@ -53,7 +56,15 @@ public class WallpaperCardViewAdapter extends RecyclerView.Adapter<WallpaperCard
     }
 
     private String modifyResolution(String imgUrl) {
-        return imgUrl;
+        String tempUrl = imgUrl;
+        int width = DevicesManager.getDeviceWidth((Activity) mContext);
+        Log.d("TEST","width = " + width);
+        if (width >= 720) {
+            tempUrl = tempUrl.replace("1920x1080","480x360");
+        } else {
+            tempUrl = tempUrl.replace("1920x1080","320x240");
+        }
+        return tempUrl;
     }
 
     @Override
