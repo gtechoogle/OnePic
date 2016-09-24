@@ -1,5 +1,5 @@
 <resources xmlns:xliff="http://schemas.android.com/tools">
-    <string name="app_name">Daily Wallpaper</string>
+    <string name="app_name">One Day Wallpaper</string>
     <string name="wallpaper_hint">Setting wallpaper ......</string>
     <string name="folder_name" translatable="false">BingWallPaper</string>
     <string name="menu_item_set_wallpaper">Set as wallpaper</string>
