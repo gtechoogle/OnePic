@@ -20,6 +20,10 @@ public class BingHttpRequest {
     private static final String TAG = "BingHttpRequest";
     private static final String BASE_URL = "http://www.bing.com/";
     private Handler mHandler;
+    private static final String RETURN_FORMAT = "js";//JSON
+    private static final int RETURN_NUM = 8;// num of pic return
+    private static final int DEF_IDX = 0;
+
 
     public BingHttpRequest(Handler handler) {
         mHandler = handler;
@@ -32,7 +36,7 @@ public class BingHttpRequest {
                 .build();
         BingPicApi service = retrofit.create(BingPicApi.class);
 
-        Call<BingPic> call = service.getBingPic();
+        Call<BingPic> call = service.getBingPic(RETURN_FORMAT, DEF_IDX, RETURN_NUM);
 
         call.enqueue(new Callback<BingPic>() {
             @Override
@@ -41,6 +45,7 @@ public class BingHttpRequest {
                     Log.d(TAG,"Get successful response");
                     BingPic data = response.body();
                     if (data == null) {
+                        Log.d(TAG,"data is null");
                         sendImageUrl(getFailMessage());
                         return;
                     }

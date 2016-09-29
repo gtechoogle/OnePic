@@ -30,6 +30,7 @@ public class LaunchActivity extends AppCompatActivity {
     private List<WallpaperInfo> mWallpaperInfoList = new ArrayList<>();
     private WallpaperCardViewAdapter mAdapter;
     private ProgressBar mLoading;
+    private static int sRetryTime = 0;
 
     private Handler mHandler = new Handler(){
         @Override
@@ -39,13 +40,17 @@ public class LaunchActivity extends AppCompatActivity {
             switch (type) {
                 case PicUrlManager.MSG_REQUEST_SUCCESS:
                     if (msg.obj instanceof List) {
+                        sRetryTime = 0;
                         mLoading.setVisibility(View.GONE);
                         setupWallpaperData(msg);
                         mAdapter.notifyDataSetChanged();
                     }
                     break;
                 case PicUrlManager.MSG_REQUEST_FAIL:
-                    mPicUrlManager.sendRequest();
+                    sRetryTime ++;
+                    if (sRetryTime < 8) {
+                        mPicUrlManager.sendRequest();
+                    }
             }
         }
     };
