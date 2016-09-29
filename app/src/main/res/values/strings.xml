@@ -1,8 +1,11 @@
-<resources>
-    <string name="app_name">Daily Wallpaper</string>
+<resources xmlns:xliff="http://schemas.android.com/tools">
+    <string name="app_name">One Day Wallpaper</string>
     <string name="wallpaper_hint">Setting wallpaper ......</string>
     <string name="folder_name" translatable="false">BingWallPaper</string>
     <string name="menu_item_set_wallpaper">Set as wallpaper</string>
     <string name="menu_item_download">Download to</string>
     <string name="menu_item_share">Share</string>
+    <string name="title_time">Time: <xliff:g>%s</xliff:g></string>
+    <string name="summary_location">Location: <xliff:g>%s</xliff:g></string>
+    <string name="no_connection">Internet not available, please check the connection</string>
 </resources>

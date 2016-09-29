@@ -49,6 +49,7 @@ public class PicDownloadManager {
     public void downloadPic(String uri, Handler handler) {
         mHandler = handler;
         mUrl = uri;
+        Log.d("TEST","hhh = " + uri);
         Picasso.with(mContext).load(uri).into(mTarget);
     }
     public void cancelDownload() {

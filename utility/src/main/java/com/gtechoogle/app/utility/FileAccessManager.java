@@ -61,7 +61,7 @@ public class FileAccessManager {
         if (!isExternalStorageAvailable()) {
             return;
         }
-        mSaveFilePath = new File(mFolder.getPath() + "/" + fileName + ".png");
+        mSaveFilePath = new File(mFolder.getPath() + "/" + fileName + ".jpg");
         if(mSaveFilePath.exists()){
             mSaveFilePath.delete();
             Log.d(TAG,"Exist file and delete first");

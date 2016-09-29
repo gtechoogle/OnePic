@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">每日必应壁纸</string>
+<resources xmlns:xliff="http://schemas.android.com/tools">
+    <string name="app_name">必应壁纸</string>
     <string name="wallpaper_hint">设定壁纸中 ......</string>
     <string name="menu_item_set_wallpaper">设为壁纸</string>
     <string name="menu_item_download">下载</string>
     <string name="menu_item_share">共享</string>
+    <string name="title_time">时间：<xliff:g>%s</xliff:g></string>
+    <string name="summary_location">地点：<xliff:g>%s</xliff:g></string>
+    <string name="no_connection">无网络连接，请检查手机网络</string>
+
 </resources>

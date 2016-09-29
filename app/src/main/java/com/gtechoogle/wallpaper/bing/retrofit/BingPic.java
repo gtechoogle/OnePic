@@ -2,7 +2,7 @@ package com.gtechoogle.wallpaper.bing.retrofit;
 
 import android.util.Log;
 
-import com.gtechoogle.wallpaper.bing.model.WallpaperDataInfo;
+import com.gtechoogle.wallpaper.bing.model.WallpaperInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +18,21 @@ public class BingPic {
     private static final String TAG = "BingPic";
     private List<Map> images;
 
-    public List<WallpaperDataInfo> getPicInfo() {
-        List<WallpaperDataInfo> wallpaperInfo = new ArrayList<>();
+    public List<WallpaperInfo> getPicInfo() {
+        List<WallpaperInfo> wallpaperInfo = new ArrayList<>();
         for (Map map : images) {
             wallpaperInfo.add(setupInfo(map));
         }
         return wallpaperInfo;
     }
 
-    private WallpaperDataInfo setupInfo(Map map) {
-        WallpaperDataInfo info = new WallpaperDataInfo();
+    private WallpaperInfo setupInfo(Map map) {
+        WallpaperInfo info = new WallpaperInfo();
         String url = (String) map.get(IMAGE_URL_KEY);
-        Log.d(TAG, "WallpaperDataInfo setupInfo url = " + url);
+        Log.d(TAG, "WallpaperInfo setupInfo url = " + url);
         info.setUri(getImageUrl(url));
         info.setDescription((String) map.get(IMAGE_DESCRIPTION_KEY));
-        info.setName((String) map.get(IMAGE_NAME_KEY));
+        info.setDate((String) map.get(IMAGE_NAME_KEY));
         return info;
     }
     // For China request, the url will include a special link, and other country will need to add
