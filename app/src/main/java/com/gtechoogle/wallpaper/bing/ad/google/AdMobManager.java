@@ -1,4 +1,4 @@
-package com.gtechoogle.wallpaper.bing.google;
+package com.gtechoogle.wallpaper.bing.ad.google;
 
 import android.content.Context;
 import android.util.Log;

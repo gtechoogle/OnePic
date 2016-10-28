@@ -2,7 +2,7 @@ package com.gtechoogle.wallpaper.bing.ad;
 
 import android.content.Context;
 
-import com.gtechoogle.wallpaper.bing.google.AdMobManager;
+import com.gtechoogle.wallpaper.bing.ad.google.AdMobManager;
 
 
 /**
@@ -10,10 +10,8 @@ import com.gtechoogle.wallpaper.bing.google.AdMobManager;
  */
 
 public class AdManager implements AdInterface {
-    private Context mContext;
     private AdMobManager mAdMobManager;
     public AdManager(Context context) {
-        mContext = context;
         mAdMobManager = new AdMobManager(context);
     }
     @Override

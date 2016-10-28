@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.gtechoogle.wallpaper.bing.view.LaunchActivity"
+    tools:context="com.gtechoogle.wallpaper.bing.wallpaperlist.WallpaperListActivity"
     tools:showIn="@layout/activity_launch"
     android:background="@color/screen_background">
     <ProgressBar
