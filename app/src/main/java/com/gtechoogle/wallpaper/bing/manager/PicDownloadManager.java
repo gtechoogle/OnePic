@@ -40,7 +40,9 @@ public class PicDownloadManager {
 
         @Override
         public void onPrepareLoad(Drawable placeHolderDrawable) {
+            Log.d(TAG, "onPrepareLoad");
         }
+
     };
 
     public PicDownloadManager(Context context) {

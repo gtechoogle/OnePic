@@ -1,6 +1,8 @@
 package com.gtechoogle.wallpaper.bing.services;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
@@ -8,17 +10,33 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.gtechoogle.app.utility.WallPaperManager;
 import com.gtechoogle.wallpaper.bing.manager.PicDownloadManager;
 import com.gtechoogle.wallpaper.bing.manager.PicUrlManager;
 import com.gtechoogle.wallpaper.bing.model.WallpaperInfo;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class ChangeWallpaperService extends Service {
     private PicUrlManager mPicUrlManager;
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (Intent.ACTION_TIME_TICK.equals(action)) {
+                Calendar c = Calendar.getInstance();
+                int hr = c.get(Calendar.HOUR_OF_DAY);
+                int min = c.get(Calendar.MINUTE);
+                //if (min  == 18) {
+                    mPicUrlManager.sendRequest();
+               // }
+                Log.d("TEST","hr = " + hr + " min = " + min);
+            }
+
+        }
+    };
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -43,9 +61,6 @@ public class ChangeWallpaperService extends Service {
         }
     };
 
-    public ChangeWallpaperService() {
-    }
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -55,20 +70,22 @@ public class ChangeWallpaperService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d("TEST","ChangeWallpaperService");
         //startForeground(1,null);
+        mPicUrlManager = new PicUrlManager(mHandler);
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_TIME_TICK);
-        ChangeWallpaperReceiver receiver = new ChangeWallpaperReceiver();
-        registerReceiver(receiver, filter);
+        registerReceiver(mReceiver, filter);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.d("TEST","ChangeWallpaperService 1");
-        mPicUrlManager = new PicUrlManager(mHandler);
-        mPicUrlManager.sendRequest();
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
     }
 }
